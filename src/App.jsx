@@ -4,13 +4,20 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Menu from './components/Menu'
 import Topdestinations from './components/Topdestinations'
+import Description from './components/Description'
+import {Routes,Route } from "../node_modules/react-router-dom"
 
 function App() {
  
   return (
   <>
   <Menu></Menu>
-  <Topdestinations></Topdestinations>
+  <Routes>
+    <Route path='/' element={<Topdestinations></Topdestinations>}></Route>
+    <Route path="/details" element={<Description></Description>} ></Route>
+    </Routes>
+  
+  {/* <Topdestinations></Topdestinations> */}
   </>
   )
 }
