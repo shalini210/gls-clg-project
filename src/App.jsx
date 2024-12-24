@@ -6,6 +6,10 @@ import Menu from './components/Menu'
 import Topdestinations from './components/Topdestinations'
 import Description from './components/Description'
 import {Routes,Route } from "../node_modules/react-router-dom"
+import AddDestination from './components/AddDestination'
+import Packages from './components/Packages'
+import Registration from './components/Registration'
+import Login from './components/Login'
 
 function App() {
  
@@ -13,8 +17,11 @@ function App() {
   <>
   <Menu></Menu>
   <Routes>
-    <Route path='/' element={<Topdestinations></Topdestinations>}></Route>
+    <Route path='/' element={<AddDestination></AddDestination>}></Route>
     <Route path="/details" element={<Description></Description>} ></Route>
+    <Route path="/packages" element={<Packages></Packages>}></Route>
+    <Route path="/register" element={<Registration></Registration>}></Route>
+    <Route path='/login' element={<Login></Login>}></Route>
     </Routes>
   
   {/* <Topdestinations></Topdestinations> */}
