@@ -1,8 +1,9 @@
-import React, { useRef, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import axios from "axios"
+import userContext from '../context/userContext'
 
 export default function Login() {
-  
+  let user = useContext(userContext)
     let emailref = useRef("")
     let pwdref = useRef("")
     const [msg,setmsg]= useState("")
@@ -16,6 +17,7 @@ export default function Login() {
        await axios.post("http://localhost:8080/users/login",data)
         .then((d)=>{
             setmsg(JSON.stringify(d.data))
+            user.setloggedin(true)
             empty()
         })
         .catch((d)=>setmsg("error"))
