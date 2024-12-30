@@ -5,7 +5,13 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'bgimg': "url('./assets/images/bannerBg.jpg')",
+        'bgAI': "url('./assets/images/banner.avif')",
+        }  
+        
+      }
   },
  
   plugins: [

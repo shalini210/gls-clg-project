@@ -14,6 +14,7 @@ import Home from './components/Home'
 import UserProfile from './components/UserProfile'
 import userContext from './context/userContext'
 import Logout from './components/Logout'
+import Demo from './components/Demo'
 
 function App() {
   const[isloggedinstate,setisloggeedinstate]= useState(false)
@@ -22,8 +23,9 @@ function App() {
   <>
       <userContext.Provider value={{isloggedin:isloggedinstate,setloggedin:setisloggeedinstate}}>
     
-  <Menu></Menu>
+  {/* <Menu></Menu> */}
   <Routes>
+    <Route path='/demo' element={<Demo></Demo>}></Route>
     <Route path='/profile' element={<UserProfile></UserProfile>}></Route>
     <Route path='/logout' element={<Logout></Logout>}></Route>
     <Route path='/home' element={<Home></Home>}></Route>

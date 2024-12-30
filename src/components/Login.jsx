@@ -24,10 +24,8 @@ export default function Login() {
     } 
     const empty = ()=>
     {
-
         emailref.current.value=""
-        pwdref.current.value=""
-        
+        pwdref.current.value=""        
     }
 
 
