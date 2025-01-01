@@ -23,13 +23,13 @@ function App() {
   <>
       <userContext.Provider value={{isloggedin:isloggedinstate,setloggedin:setisloggeedinstate}}>
     
-  {/* <Menu></Menu> */}
+  <Menu></Menu>
   <Routes>
     <Route path='/demo' element={<Demo></Demo>}></Route>
     <Route path='/profile' element={<UserProfile></UserProfile>}></Route>
     <Route path='/logout' element={<Logout></Logout>}></Route>
     <Route path='/home' element={<Home></Home>}></Route>
-    <Route path='/' element={<AddDestination></AddDestination>}></Route>
+    {/* <Route path='/' element={<AddDestination></AddDestination>}></Route> */}
     <Route path="/details" element={<Description></Description>} ></Route>
     <Route path="/packages" element={<Packages></Packages>}></Route>
     <Route path="/register" element={<Registration></Registration>}></Route>

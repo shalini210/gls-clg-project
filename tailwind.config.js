@@ -9,9 +9,11 @@ export default {
       backgroundImage: {
         'bgimg': "url('./assets/images/bannerBg.jpg')",
         'bgAI': "url('./assets/images/banner.avif')",
+        'bggenAI':'url(./assets/images/GENAI.jpg)'
         }  
-        
+    
       }
+     
   },
  
   plugins: [

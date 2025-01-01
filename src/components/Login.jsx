@@ -1,13 +1,13 @@
 import React, { useContext, useRef, useState } from 'react'
 import axios from "axios"
 import userContext from '../context/userContext'
-
+import { useNavigate } from 'react-router'
 export default function Login() {
   let user = useContext(userContext)
     let emailref = useRef("")
     let pwdref = useRef("")
     const [msg,setmsg]= useState("")
-
+  const navigate = useNavigate();
     const loginUser=async()=>
     {
         let data = {
@@ -16,7 +16,14 @@ export default function Login() {
         }
        await axios.post("http://localhost:8080/users/login",data)
         .then((d)=>{
-            setmsg(JSON.stringify(d.data))
+         
+          if((d.data))
+          {
+            setmsg(true);
+            navigate("/profile")
+          }
+            // setmsg(JSON.stringify(d.data))
+            
             user.setloggedin(true)
             empty()
         })
