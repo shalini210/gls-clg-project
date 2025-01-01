@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useRef } from 'react'
 
 export default function UserProfile() {
@@ -6,7 +7,7 @@ export default function UserProfile() {
   let addressref = useRef()
   let occupationref = useRef()
   const dateref = useRef("");
-  let id = " id of the person who logged in "
+  let id = "676a3b219f340af07ee48c5e" //" id of the person who logged in "
   const addProfile= () =>{
    let data={
     userid: id,
@@ -15,6 +16,9 @@ export default function UserProfile() {
       address:addressref.current.value,
       dob:dateref.current.value
     }
+    axios.put("http://localhost:8080/users/profile/",data)
+    .then((d)=>console.log(d.data))
+    .catch((e)=>console.log(e))
   }
 
   let fordate = ()=>
@@ -54,7 +58,7 @@ console.log(endyear)
     <option>O Unknown</option>
     <option>Unknown</option>
 </select>
-<input type="button" value="Add"  />
+<input type="button" value="Add" onClick={()=>addProfile()} />
     </>
 
   )
