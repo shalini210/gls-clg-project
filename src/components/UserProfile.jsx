@@ -1,16 +1,30 @@
 import axios from 'axios';
-import React, { useRef } from 'react'
-
+import React, { useEffect, useRef } from 'react'
+import userProfile from '../context/userProfile';
+import { useContext } from 'react';
+import moment from 'moment';
 export default function UserProfile() {
 
+  const userdetail = useContext(userProfile)
   let bloodTyperef = useRef()
   let addressref = useRef()
   let occupationref = useRef()
   const dateref = useRef("");
-  let id = "676a3b219f340af07ee48c5e" //" id of the person who logged in "
+   //" id of the person who logged in "
+   useEffect(()=>
+   {
+console.log(userdetail.userdetails[0]._id)
+bloodTyperef.current.value = userdetail.userdetails[0].bloodType
+occupationref.current.value = userdetail.userdetails[0].occupation
+console.log( (userdetail.userdetails[0].dob))
+dateref.current.value = 
+moment(userdetail.userdetails[0].dob).utc().format('YYYY-MM-DD')
+addressref.current.value= userdetail.userdetails[0].address
+
+   },[])
   const addProfile= () =>{
    let data={
-    userid: id,
+    userid: userdetail.userdetails[0]._id,
       bloodType:bloodTyperef.current.value,
       occupation:occupationref.current.value,
       address:addressref.current.value,
@@ -40,10 +54,17 @@ console.log(endyear)
     <>
     <div>UserProfile</div>
     <div>Add profile details</div>
-    DOB: <input type="date" ref={dateref} onFocus={()=>fordate()}/>
-    HOME Address: <textarea ref={addressref}></textarea>
+    <p>DOB: <input type="date" ref={dateref}
+     onFocus={()=>fordate()}/>
+    </p>
+    <p>HOME Address: <textarea ref={addressref}></textarea>
+    </p>
+    <p>
     OCCUpation: <input type="text" ref={occupationref}></input>
+    </p>
+    <p>
     BLOOD GROUP: <select ref={bloodTyperef}>
+      
     <option>A Positive</option>
     <option>A Negative</option>
     <option>A Unknown</option>
@@ -58,7 +79,8 @@ console.log(endyear)
     <option>O Unknown</option>
     <option>Unknown</option>
 </select>
-<input type="button" value="Add" onClick={()=>addProfile()} />
+</p>
+<input type="button" className='bg-blue-500' value="Save" onClick={()=>addProfile()} />
     </>
 
   )

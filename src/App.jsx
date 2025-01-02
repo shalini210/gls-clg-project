@@ -15,14 +15,14 @@ import UserProfile from './components/UserProfile'
 import userContext from './context/userContext'
 import Logout from './components/Logout'
 import Demo from './components/Demo'
-
+import userProfile from './context/userProfile'
 function App() {
   const[isloggedinstate,setisloggeedinstate]= useState(false)
- 
+ const[userdetails,setuserdetails]= useState({});
   return (
   <>
       <userContext.Provider value={{isloggedin:isloggedinstate,setloggedin:setisloggeedinstate}}>
-    
+  <userProfile.Provider value={{userdetails: userdetails,setuserdetails:setuserdetails}}>
   <Menu></Menu>
   <Routes>
     <Route path='/demo' element={<Demo></Demo>}></Route>
@@ -35,6 +35,7 @@ function App() {
     <Route path="/register" element={<Registration></Registration>}></Route>
     <Route path='/login' element={<Login></Login>}></Route>
     </Routes>
+    </userProfile.Provider>  
     </userContext.Provider>
   {/* <Topdestinations></Topdestinations> */}
   </>

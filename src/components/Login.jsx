@@ -2,8 +2,10 @@ import React, { useContext, useRef, useState } from 'react'
 import axios from "axios"
 import userContext from '../context/userContext'
 import { useNavigate } from 'react-router'
+import userProfile from '../context/userProfile'
 export default function Login() {
   let user = useContext(userContext)
+  let userprofile = useContext(userProfile)
     let emailref = useRef("")
     let pwdref = useRef("")
     const [msg,setmsg]= useState("")
@@ -16,18 +18,24 @@ export default function Login() {
         }
        await axios.post("http://localhost:8080/users/login",data)
         .then((d)=>{
-         
-          if((d.data))
+         console.log(d)
+          if(d.data!=false && d.data.length>0)
           {
             setmsg(true);
+            userprofile.setuserdetails(d.data);
+            user.setloggedin(true)
+            empty()
             navigate("/profile")
+          }
+          else{
+            setmsg("invalid user")
           }
             // setmsg(JSON.stringify(d.data))
             
-            user.setloggedin(true)
-            empty()
+            
         })
-        .catch((d)=>setmsg("error"))
+        .catch((d)=>
+        {console.log(d);setmsg("error")})
     } 
     const empty = ()=>
     {
