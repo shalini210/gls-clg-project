@@ -16,15 +16,19 @@ import userContext from './context/userContext'
 import Logout from './components/Logout'
 import Demo from './components/Demo'
 import userProfile from './context/userProfile'
+import Adminhome from './components/admin/Adminhome'
+import Admincontext from './context/Admincontext'
 function App() {
   const[isloggedinstate,setisloggeedinstate]= useState(false)
  const[userdetails,setuserdetails]= useState({});
   return (
   <>
+  
       <userContext.Provider value={{isloggedin:isloggedinstate,setloggedin:setisloggeedinstate}}>
   <userProfile.Provider value={{userdetails: userdetails,setuserdetails:setuserdetails}}>
   <Menu></Menu>
   <Routes>
+    <Route path='/adminhome' element={<Adminhome></Adminhome>}></Route>
     <Route path='/demo' element={<Demo></Demo>}></Route>
     <Route path='/profile' element={<UserProfile></UserProfile>}></Route>
     <Route path='/logout' element={<Logout></Logout>}></Route>
