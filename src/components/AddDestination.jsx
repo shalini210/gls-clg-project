@@ -4,11 +4,10 @@ export default function AddDestination() {
     let nameref = useRef("");
     let imgref = useRef("");
     const AddData=()=>
-    {   const config = {headers: {'Content-Type': 'multipart/form-data'}}
-
-     
-        const place ={name:nameref.current.value,resume:imgref.current.files[0]}
-        axios.post("http://localhost:8080/forposthandle",place,config,
+    {  
+       const config = {headers: {'Content-Type': 'multipart/form-data'}}
+const place ={name:nameref.current.value,resume:imgref.current.files[0]}      
+axios.post("http://localhost:8080/forposthandle",place,config,
         ).then((d)=>console.log(d))
     }
   return (<>
