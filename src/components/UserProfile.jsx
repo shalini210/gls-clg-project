@@ -9,6 +9,7 @@ export default function UserProfile() {
   let bloodTyperef = useRef()
   let addressref = useRef()
   let occupationref = useRef()
+  let imgref = useRef()
   const dateref = useRef("");
    //" id of the person who logged in "
    useEffect(()=>
@@ -28,9 +29,12 @@ addressref.current.value= userdetail.userdetails[0].address
       bloodType:bloodTyperef.current.value,
       occupation:occupationref.current.value,
       address:addressref.current.value,
-      dob:dateref.current.value
+      dob:dateref.current.value,
+      img:imgref.current.files[0]
     }
-    axios.put("http://localhost:8080/users/profile/",data)
+    const config = {headers: {'Content-Type': 'multipart/form-data'}}
+    
+    axios.put("http://localhost:8080/users/profile/",data,config)
     .then((d)=>console.log(d.data))
     .catch((e)=>console.log(e))
   }
@@ -79,6 +83,10 @@ console.log(endyear)
     <option>O Unknown</option>
     <option>Unknown</option>
 </select>
+</p>
+<p>
+  Profile Image:
+  <input type="file" ref={imgref}/>
 </p>
 <input type="button" className='bg-blue-500' value="Save" onClick={()=>addProfile()} />
     </>

@@ -14,12 +14,12 @@ export default function AddCamp() {
             place :placeref.current.value,
             date:dateref.current.value,
             time:timeref.current.value,
-            maxdonors:maxdonorsref.current.value,}
+            maxdonors:maxdonorsref.current.value,
+        }
         axios.post(`${APIUrl}/camp`,data)
         .then((d)=>
         {
             console.log(d)
-
         })
         .catch((e)=>console.log(e))
     }
