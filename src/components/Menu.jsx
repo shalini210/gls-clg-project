@@ -2,9 +2,10 @@ import React, { useContext } from 'react'
 import { Link } from 'react-router'
 import userContext from '../context/userContext'
 import UserProfile from './UserProfile'
-
+import {useSelector} from "react-redux"
 export default function Menu() {
   let user = useContext(userContext)
+  let count = useSelector((state)=>state.counter.value)
   return (
     
 
@@ -62,6 +63,7 @@ export default function Menu() {
         <li>
           {user.isloggedin?<Link to="/logout">Logout</Link>:""}
         </li>
+        <li>current : {count}</li>
       </ul>
     </div>
   </div>

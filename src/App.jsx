@@ -18,6 +18,8 @@ import Demo from './components/Demo'
 import userProfile from './context/userProfile'
 import Adminhome from './components/admin/Adminhome'
 import Admincontext from './context/Admincontext'
+import Countereg from './components/reduxegs/Countereg'
+import HomeR from './components/reduxegs/HomeR'
 function App() {
   const[isloggedinstate,setisloggeedinstate]= useState(false)
  const[userdetails,setuserdetails]= useState({});
@@ -28,6 +30,7 @@ function App() {
   <userProfile.Provider value={{userdetails: userdetails,setuserdetails:setuserdetails}}>
   <Menu></Menu>
   <Routes>
+    <Route path="/forredux" element={<HomeR></HomeR>}></Route>
     <Route path='/adminhome' element={<Adminhome></Adminhome>}></Route>
     <Route path='/demo' element={<Demo></Demo>}></Route>
     <Route path='/profile' element={<UserProfile></UserProfile>}></Route>
