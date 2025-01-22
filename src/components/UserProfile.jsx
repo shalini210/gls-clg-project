@@ -1,8 +1,9 @@
 import axios from 'axios';
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import userProfile from '../context/userProfile';
 import { useContext } from 'react';
 import moment from 'moment';
+import { APIUrl } from '../config';
 export default function UserProfile() {
 
   const userdetail = useContext(userProfile)
@@ -11,6 +12,8 @@ export default function UserProfile() {
   let occupationref = useRef()
   let imgref = useRef()
   const dateref = useRef("");
+  let imgtag = useRef("");
+  const [msg,setmsg] = useState("");
    //" id of the person who logged in "
    useEffect(()=>
    {
@@ -21,8 +24,8 @@ console.log( (userdetail.userdetails[0].dob))
 dateref.current.value = 
 moment(userdetail.userdetails[0].dob).utc().format('YYYY-MM-DD')
 addressref.current.value= userdetail.userdetails[0].address
-
-   },[])
+imgtag.current.src = APIUrl+"/uploads/"+userdetail.userdetails[0].img
+   },[userdetail.userdetails[0]])
   const addProfile= () =>{
    let data={
     userid: userdetail.userdetails[0]._id,
@@ -35,7 +38,12 @@ addressref.current.value= userdetail.userdetails[0].address
     const config = {headers: {'Content-Type': 'multipart/form-data'}}
     
     axios.put("http://localhost:8080/users/profile/",data,config)
-    .then((d)=>console.log(d.data))
+    .then((d)=>{
+      console.log(d.data);
+      userdetail.setuserdetails(d.data);
+      setmsg("")
+      setmsg("record updated")
+      })
     .catch((e)=>console.log(e))
   }
 
@@ -57,6 +65,7 @@ console.log(endyear)
   return (
     <>
     <div>UserProfile</div>
+    <img src="" className='h-16 aspect-square' ref={imgtag}/>
     <div>Add profile details</div>
     <p>DOB: <input type="date" ref={dateref}
      onFocus={()=>fordate()}/>
@@ -89,6 +98,7 @@ console.log(endyear)
   <input type="file" ref={imgref}/>
 </p>
 <input type="button" className='bg-blue-500' value="Save" onClick={()=>addProfile()} />
+{msg}
     </>
 
   )
